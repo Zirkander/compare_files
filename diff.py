@@ -11,22 +11,20 @@ def compare_files(f1, f2):
     d2 = defaultdict(list)
     # create a dictionary where the lines in the lists are seperated by a " " for their key/value pairs
     for item in list1:
-        k = item[:40]
-        v = item[41:]
+        k = str(item[:40])
+        v = str(item[41:])
         # print(k)
         d1[k].append(v)
 
     for item in list2:
-        k = item[:40]
-        v = item[41:]
+        k = str(item[:40])
+        v = str(item[41:])
         # print(k)
         d2[k].append(v)
 
-    for k in d1:
-        # print(d1[k])
-        print(k)
-        if d1[k] == d2[k]:
-            del d2[k]
+    for k in list(d1):
+        if k in d2.keys():
+            d2.pop(k)
     # rejoin the key/value pairs back into prior format and write it to an output file.
     if user_input != 1:
         with open("NewNotInOld.txt", "w") as output:
